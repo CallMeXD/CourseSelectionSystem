@@ -1,0 +1,60 @@
+﻿<Window x:Class="CourseSelectionSystem.Views.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:vm="clr-namespace:CourseSelectionSystem.ViewModels"
+        xmlns:models="clr-namespace:CourseSelectionSystem.Models"
+        mc:Ignorable="d"
+        Title="学生选课系统" Height="720" Width="1200"
+        WindowStartupLocation="CenterScreen">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <Border Grid.Column="0" Background="#2C3E50">
+            <StackPanel>
+                <TextBlock Text="{Binding WelcomeMessage}" 
+                           Foreground="White" 
+                           FontSize="18" 
+                           FontWeight="Bold"
+                           Margin="10,20,10,10" 
+                           TextWrapping="Wrap"/>
+
+                <Separator Margin="10,0,10,10" Background="#34495E"/>
+
+                <ListBox ItemsSource="{Binding MenuItems}"
+                         SelectedItem="{Binding SelectedMenuItem, Mode=TwoWay}"
+                         Background="Transparent" 
+                         BorderThickness="0"
+                         ItemContainerStyle="{StaticResource MenuListBoxItemStyle}">
+
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Name}" 
+                                       Foreground="White" 
+                                       FontSize="15" 
+                                       Padding="15,10"/>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+
+                <Button Content="退出登录" 
+                        Command="{Binding LogoutCommand}"
+                        VerticalAlignment="Bottom"
+                        Margin="20,50,20,20"
+                        Height="35"
+                        Background="#E74C3C"
+                        Foreground="White"/>
+            </StackPanel>
+        </Border>
+
+        <ContentControl Grid.Column="1" 
+                        Content="{Binding CurrentViewModel}"
+                        Margin="10">
+        </ContentControl>
+    </Grid>
+</Window>

@@ -5,6 +5,7 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Collections.Generic;
+using System;
 
 namespace CourseSelectionSystem.Services
 {
@@ -78,6 +79,33 @@ namespace CourseSelectionSystem.Services
             }
             catch
             {
+                return false;
+            }
+        }
+        public List<User> GetAllUsers()
+        {
+            // 获取所有用户
+            return _context.Users.ToList();
+        }
+
+        public bool DeleteUser(string userId)
+        {
+            try
+            {
+                var userToDelete = _context.Users.FirstOrDefault(u => u.UserID == userId);
+                if (userToDelete != null)
+                {
+                    _context.Users.Remove(userToDelete);
+                    // 尝试保存更改
+                    _context.SaveChanges();
+                    return true;
+                }
+                return false;
+            }
+            catch (Exception ex)
+            {
+                // 捕获异常，通常是由于外键约束 (Restrict) 导致删除失败
+                // Console.WriteLine($"删除用户失败: {ex.Message}");
                 return false;
             }
         }

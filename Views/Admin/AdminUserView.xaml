@@ -1,0 +1,50 @@
+﻿<UserControl x:Class="CourseSelectionSystem.Views.Admin.AdminUserView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:vmAdmin="clr-namespace:CourseSelectionSystem.ViewModels.Admin"
+             mc:Ignorable="d" 
+             d:DataContext="{d:DesignInstance Type=vmAdmin:AdminUserViewModel}"
+             d:DesignHeight="600" d:DesignWidth="1000">
+
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Grid.Row="0" Text="👤 用户管理" FontSize="28" FontWeight="Bold" Margin="0,0,0,20"/>
+
+        <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="0,0,0,15">
+            <TextBlock Text="新增用户：" FontWeight="Bold" VerticalAlignment="Center" Margin="0,0,10,0"/>
+
+            <TextBox Text="{Binding NewUserId, UpdateSourceTrigger=PropertyChanged}" Width="100" Margin="5,0" ToolTip="输入ID/学号/工号"/>
+
+            <TextBox Text="{Binding NewUserName, UpdateSourceTrigger=PropertyChanged}" Width="120" Margin="5,0" ToolTip="输入姓名"/>
+
+            <ComboBox ItemsSource="{Binding Roles}" 
+                      SelectedItem="{Binding NewUserRole}"
+                      Width="100" Margin="5,0"/>
+
+            <Button Content="添加" Command="{Binding AddUserCommand}" Width="80" Margin="15,0,0,0" Background="#4CAF50" Foreground="White"/>
+            <Button Content="删除选中" Command="{Binding DeleteUserCommand}" Width="80" Margin="15,0,0,0" Background="#F44336" Foreground="White"/>
+            <Button Content="刷新列表" Command="{Binding LoadUsersCommand}" Width="80" Margin="15,0,0,0"/>
+        </StackPanel>
+
+        <DataGrid Grid.Row="2" 
+                  ItemsSource="{Binding Users}"
+                  SelectedItem="{Binding SelectedUser, Mode=TwoWay}"
+                  AutoGenerateColumns="False" 
+                  IsReadOnly="True"
+                  CanUserAddRows="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ID" Binding="{Binding UserID}" Width="100"/>
+                <DataGridTextColumn Header="姓名" Binding="{Binding UserName}" Width="120"/>
+                <DataGridTextColumn Header="角色" Binding="{Binding Role}" Width="80"/>
+                <DataGridTextColumn Header="密码哈希" Binding="{Binding PasswordHash}" Width="*"/>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</UserControl>

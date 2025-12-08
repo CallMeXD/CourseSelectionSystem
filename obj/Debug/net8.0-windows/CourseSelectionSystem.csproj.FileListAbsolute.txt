@@ -131,3 +131,5 @@ C:\Users\86198\Desktop\CourseSelectionSystem\CourseSelectionSystem\CourseSelecti
 C:\Users\86198\Desktop\CourseSelectionSystem\CourseSelectionSystem\CourseSelectionSystem\obj\Debug\net8.0-windows\Views\MainWindow.baml
 C:\Users\86198\Desktop\CourseSelectionSystem\CourseSelectionSystem\CourseSelectionSystem\obj\Debug\net8.0-windows\Views\Admin\AdminUserView.g.cs
 C:\Users\86198\Desktop\CourseSelectionSystem\CourseSelectionSystem\CourseSelectionSystem\obj\Debug\net8.0-windows\Views\Admin\AdminUserView.baml
+C:\Users\86198\Desktop\CourseSelectionSystem\CourseSelectionSystem\CourseSelectionSystem\obj\Debug\net8.0-windows\Views\Admin\AdminCourseView.g.cs
+C:\Users\86198\Desktop\CourseSelectionSystem\CourseSelectionSystem\CourseSelectionSystem\obj\Debug\net8.0-windows\Views\Admin\AdminCourseView.baml

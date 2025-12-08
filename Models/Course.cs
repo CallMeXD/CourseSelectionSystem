@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace CourseSelectionSystem.Models
 {
+    [Table("Course")]
     public class Course
     {
         [Key]

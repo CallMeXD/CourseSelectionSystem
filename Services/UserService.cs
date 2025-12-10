@@ -109,5 +109,35 @@ namespace CourseSelectionSystem.Services
                 return false;
             }
         }
+
+        public bool UpdateProfile(string userId, string newName, string newPassword)
+        {
+            try
+            {
+                var user = _context.Users.FirstOrDefault(u => u.UserID == userId);
+                if (user == null) return false;
+
+                // 更新姓名
+                if (!string.IsNullOrEmpty(newName))
+                {
+                    user.UserName = newName;
+                }
+
+                // 更新密码 (如果输入了新密码)
+                if (!string.IsNullOrEmpty(newPassword))
+                {
+                    // 注意：这里复用 HashPassword 方法
+                    // 确保 HashPassword 是 public 的，或者在这里直接调用
+                    user.PasswordHash = HashPassword(newPassword);
+                }
+
+                _context.SaveChanges();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
     }
 }

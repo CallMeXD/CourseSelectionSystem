@@ -10,6 +10,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace CourseSelectionSystem.Models
 {
+    [Table("Offering")] // 2. 强制映射到数据库的 "Offering" 表
     public class Offering
     {
         [Key]

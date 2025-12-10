@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NET;NET8_0;NETCOREAPP
 C:\Users\86198\Desktop\CourseSelectionSystem\CourseSelectionSystem\CourseSelectionSystem\App.xaml
-51454656813
+71479800890
 
-231469331008
+2866071197
 227-583167861
-Views\Admin\AdminCourseView.xaml;Views\Admin\AdminUserView.xaml;Views\LoginView.xaml;Views\MainWindow.xaml;Views\RegisterView.xaml;
+Views\Admin\AdminCourseView.xaml;Views\Admin\AdminOfferingView.xaml;Views\Admin\AdminUserView.xaml;Views\LoginView.xaml;Views\MainWindow.xaml;Views\ProfileView.xaml;Views\RegisterView.xaml;
 
 False
 

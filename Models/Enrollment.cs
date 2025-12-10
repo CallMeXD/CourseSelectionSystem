@@ -8,6 +8,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace CourseSelectionSystem.Models
 {
+    [Table("Enrollment")] // 2. 强制映射到数据库的 "Enrollment" 表
     public class Enrollment
     {
         [Key]

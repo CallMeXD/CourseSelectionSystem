@@ -95,6 +95,14 @@ namespace CourseSelectionSystem.ViewModels
                     CurrentViewModel = mainWindow.GetAdminCourseView();
                     break;
 
+                case "AdminOfferingViewModel":
+                    CurrentViewModel = mainWindow.GetAdminOfferingView();
+                    break;
+
+                case "ProfileViewModel":
+                    CurrentViewModel = mainWindow.GetProfileView();
+                    break;
+
 
                 default:
                     CurrentViewModel = new TemporaryViewModel(menuItem.Name);

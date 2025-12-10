@@ -1,0 +1,48 @@
+﻿<UserControl x:Class="CourseSelectionSystem.Views.Teacher.TeacherGradeInputView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:vmTeacher="clr-namespace:CourseSelectionSystem.ViewModels.Teacher"
+             mc:Ignorable="d" 
+             d:DataContext="{d:DesignInstance Type=vmTeacher:TeacherGradeInputViewModel}"
+             d:DesignHeight="700" d:DesignWidth="1100">
+
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Grid.Row="0" Text="📝 成绩录入与任课查询" FontSize="28" FontWeight="Bold" Margin="0,0,0,20"/>
+
+        <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="0,0,0,15">
+            <TextBlock Text="选择任课班级：" VerticalAlignment="Center" Margin="0,0,10,0"/>
+
+            <ComboBox ItemsSource="{Binding TeacherOfferings}"
+                      SelectedItem="{Binding SelectedOffering}"
+                      DisplayMemberPath="Course.CourseName"
+                      Width="250" Margin="0,0,15,0"/>
+
+            <Button Content="加载学生名单" Command="{Binding LoadStudentsCommand}" Width="120" Margin="0,0,15,0" Background="#2196F3" Foreground="White"/>
+            <Button Content="保存成绩更改" Command="{Binding SaveGradesCommand}" Width="120" Background="#4CAF50" Foreground="White"/>
+            <Button Content="刷新课程列表" Command="{Binding LoadOfferingsCommand}" Width="100" Margin="15,0,0,0"/>
+        </StackPanel>
+
+        <DataGrid Grid.Row="2" 
+                  ItemsSource="{Binding StudentEnrollments}"
+                  AutoGenerateColumns="False" 
+                  CanUserAddRows="False"
+                  HorizontalGridLinesBrush="#DDD" VerticalGridLinesBrush="#DDD"
+                  Margin="0,10,0,0">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="学号" Binding="{Binding StudentID}" Width="120" IsReadOnly="True"/>
+                <DataGridTextColumn Header="学生姓名" Binding="{Binding Student.UserName}" Width="150" IsReadOnly="True"/>
+                <DataGridTextColumn Header="成绩 (0-100)" Binding="{Binding Grade, StringFormat=N0}" Width="120" IsReadOnly="False"/>
+                <DataGridTextColumn Header="选课时间" Binding="{Binding EnrollDate, StringFormat=yyyy-MM-dd}" Width="150" IsReadOnly="True"/>
+                <DataGridTextColumn Header="开课ID" Binding="{Binding OfferingID}" Width="80" IsReadOnly="True"/>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</UserControl>

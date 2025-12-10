@@ -78,7 +78,7 @@ namespace CourseSelectionSystem.Services
             {
                 StudentID = studentId,
                 OfferingID = offeringId,
-                EnrollmentDate = System.DateTime.Now
+                EnrollDate = System.DateTime.Now
             };
 
             _context.Enrollments.Add(newEnrollment);

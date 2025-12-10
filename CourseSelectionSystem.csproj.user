@@ -28,7 +28,13 @@
     <Compile Update="Views\RegisterView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Views\Student\StudentEnrolledView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Views\Student\StudentSelectCourseView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\Teacher\TeacherGradeInputView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
@@ -54,7 +60,13 @@
     <Page Update="Views\RegisterView.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="Views\Student\StudentEnrolledView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Views\Student\StudentSelectCourseView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Teacher\TeacherGradeInputView.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>

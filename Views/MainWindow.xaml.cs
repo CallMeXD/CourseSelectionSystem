@@ -5,6 +5,7 @@ using CourseSelectionSystem.Services;
 using CourseSelectionSystem.ViewModels;
 using CourseSelectionSystem.Views.Admin;
 using CourseSelectionSystem.Views.Student;
+using CourseSelectionSystem.Views.Teacher;
 
 namespace CourseSelectionSystem.Views
 {
@@ -14,7 +15,9 @@ namespace CourseSelectionSystem.Views
         private readonly CourseService _courseService;
         private readonly OfferingService _offeringService;
         private readonly EnrollmentService _enrollmentService;
+        private readonly TeacherService _teacherService;
         private readonly User _currentUser;
+        
         // 构造函数：必须接收登录成功的 User 对象
         public MainWindow(User user)
         {
@@ -25,6 +28,7 @@ namespace CourseSelectionSystem.Views
             _courseService = new CourseService(context);
             _offeringService = new OfferingService(context);
             _enrollmentService = new EnrollmentService(context);
+            _teacherService = new TeacherService(context);
 
             // 2. 实例化 ViewModel，传递用户信息、窗口引用和 Service 实例
             // 注意：MainViewModel 构造函数需要三个参数
@@ -59,6 +63,17 @@ namespace CourseSelectionSystem.Views
             // 将 Service 和当前用户传递给 View
             return new StudentSelectCourseView(_enrollmentService, _currentUser);
         }
+
+        public Views.Student.StudentEnrolledView GetStudentEnrolledView()
+        {
+            return new Views.Student.StudentEnrolledView(_enrollmentService, _currentUser);
+        }
+
+        public TeacherGradeInputView GetTeacherGradeInputView()
+        {
+            return new TeacherGradeInputView(_teacherService, _currentUser);
+        }
+
 
         // TODO: 未来添加其他视图工厂方法，如 GetAdminCourseView()
     }

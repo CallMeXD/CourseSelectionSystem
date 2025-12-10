@@ -6,8 +6,7 @@ using CourseSelectionSystem.Models;
 using System.Windows;
 using System.Linq;
 using System;
-// 🟢 修正1：必须引用 Services 命名空间
-using CourseSelectionSystem.Services;
+using CourseSelectionSystem.Services; // 引用 Services
 
 namespace CourseSelectionSystem.ViewModels
 {
@@ -27,9 +26,6 @@ namespace CourseSelectionSystem.ViewModels
         [NotifyPropertyChangedFor(nameof(CurrentViewModel))]
         private MenuItem _selectedMenuItem;
 
-        // 🟢 修正2：将类型改为 object
-        // 只有 object 才能同时容纳 ViewModel 和 UserControl (View)
-        // 使用 [ObservableProperty] 让 MVVM 工具包自动生成 public object CurrentViewModel 属性
         [ObservableProperty]
         private object _currentViewModel;
 
@@ -54,14 +50,21 @@ namespace CourseSelectionSystem.ViewModels
         {
             var allMenuItems = new ObservableCollection<MenuItem>
             {
+                // Admin
                 new MenuItem { Name = "用户管理", Role = "Admin", ViewModelType = "AdminUserViewModel" },
                 new MenuItem { Name = "课程管理", Role = "Admin", ViewModelType = "AdminCourseViewModel" },
                 new MenuItem { Name = "开课计划", Role = "Admin", ViewModelType = "AdminOfferingViewModel" },
-                new MenuItem { Name = "任课查询", Role = "Teacher", ViewModelType = "TeacherTeachingViewModel" },
-                new MenuItem { Name = "成绩录入", Role = "Teacher", ViewModelType = "TeacherGradeViewModel" },
-                new MenuItem { Name = "课程查询/选课", Role = "Student", ViewModelType = "StudentCourseViewModel" },
+                
+                // Teacher
+                new MenuItem { Name = "任课查询", Role = "Teacher", ViewModelType = "TeacherGradeInputViewModel" },
+                new MenuItem { Name = "成绩录入", Role = "Teacher", ViewModelType = "TeacherGradeInputViewModel" },
+                
+                // Student (注意：这里 ViewModelType 名称要对应 switch 中的 case)
+                new MenuItem { Name = "课程查询/选课", Role = "Student", ViewModelType = "StudentSelectCourseViewModel" },
                 new MenuItem { Name = "我的课程", Role = "Student", ViewModelType = "StudentEnrolledViewModel" },
                 new MenuItem { Name = "成绩查询", Role = "Student", ViewModelType = "StudentGradeViewModel" },
+                
+                // Common
                 new MenuItem { Name = "个人信息", Role = "All", ViewModelType = "ProfileViewModel" }
             };
 
@@ -86,8 +89,8 @@ namespace CourseSelectionSystem.ViewModels
 
             switch (menuItem.ViewModelType)
             {
+                // --- 管理员视图 ---
                 case "AdminUserViewModel":
-                    // 🟢 修正3：因为 _currentViewModel 是 object 类型，这里可以接收 UserControl 了
                     CurrentViewModel = mainWindow.GetAdminUserView();
                     break;
 
@@ -99,10 +102,36 @@ namespace CourseSelectionSystem.ViewModels
                     CurrentViewModel = mainWindow.GetAdminOfferingView();
                     break;
 
+                // --- 学生视图 ---
+                // 🔴 新增：处理学生选课
+                case "StudentSelectCourseViewModel":
+                    // 确保 MainWindow.xaml.cs 中已经添加了 GetStudentSelectCourseView() 方法
+                    CurrentViewModel = mainWindow.GetStudentSelectCourseView();
+                    break;
+
+                // 🔴 新增：处理我的课程 (阶段 6 Part 2 内容)
+                case "StudentEnrolledViewModel":
+                    // 如果您还未完成 Part 2，可以先注释掉下面这行，用 TemporaryViewModel 代替
+                    // CurrentViewModel = new TemporaryViewModel("我的课程 (开发中)");
+                    CurrentViewModel = mainWindow.GetStudentEnrolledView();
+                    break;
+
+                // 🔴 新增：处理成绩查询
+                case "StudentGradeViewModel":
+                    // 暂时复用我的课程视图，或者使用 TemporaryViewModel
+                    CurrentViewModel = mainWindow.GetStudentEnrolledView();
+                    break;
+                //--
+                //---教师视图---
+                case "TeacherGradeInputViewModel":
+                    CurrentViewModel = mainWindow.GetTeacherGradeInputView();
+                    break;
+
+
+                // --- 通用视图 ---
                 case "ProfileViewModel":
                     CurrentViewModel = mainWindow.GetProfileView();
                     break;
-
 
                 default:
                     CurrentViewModel = new TemporaryViewModel(menuItem.Name);

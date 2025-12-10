@@ -137,3 +137,9 @@ C:\Users\86198\Desktop\CourseSelectionSystem\CourseSelectionSystem\CourseSelecti
 C:\Users\86198\Desktop\CourseSelectionSystem\CourseSelectionSystem\CourseSelectionSystem\obj\Debug\net8.0-windows\Views\Admin\AdminOfferingView.baml
 C:\Users\86198\Desktop\CourseSelectionSystem\CourseSelectionSystem\CourseSelectionSystem\obj\Debug\net8.0-windows\Views\ProfileView.g.cs
 C:\Users\86198\Desktop\CourseSelectionSystem\CourseSelectionSystem\CourseSelectionSystem\obj\Debug\net8.0-windows\Views\ProfileView.baml
+C:\Users\86198\Desktop\CourseSelectionSystem\CourseSelectionSystem\CourseSelectionSystem\obj\Debug\net8.0-windows\Views\Student\StudentEnrolledView.g.cs
+C:\Users\86198\Desktop\CourseSelectionSystem\CourseSelectionSystem\CourseSelectionSystem\obj\Debug\net8.0-windows\Views\Student\StudentSelectCourseView.g.cs
+C:\Users\86198\Desktop\CourseSelectionSystem\CourseSelectionSystem\CourseSelectionSystem\obj\Debug\net8.0-windows\Views\Student\StudentEnrolledView.baml
+C:\Users\86198\Desktop\CourseSelectionSystem\CourseSelectionSystem\CourseSelectionSystem\obj\Debug\net8.0-windows\Views\Student\StudentSelectCourseView.baml
+C:\Users\86198\Desktop\CourseSelectionSystem\CourseSelectionSystem\CourseSelectionSystem\obj\Debug\net8.0-windows\Views\Teacher\TeacherGradeInputView.g.cs
+C:\Users\86198\Desktop\CourseSelectionSystem\CourseSelectionSystem\CourseSelectionSystem\obj\Debug\net8.0-windows\Views\Teacher\TeacherGradeInputView.baml
